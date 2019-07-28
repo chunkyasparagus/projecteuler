@@ -42,7 +42,7 @@ Similarly for N = 100, we get 2318.
 from typing import List
 from math import gcd
 import sys
-sys.stdin = open(__file__.replace('.py', ' - Inputs.txt'))  # Hackerrank states read from stdin - using a file to test
+sys.stdin = open(__file__.replace('.py', ' - Inputs.txt'))  # Simulate inputs from stdin - remove this on Hackerrank
 
 
 def sum_multiples(num: int, limit: int, include_limit: bool = False) -> int:
@@ -75,7 +75,9 @@ def sum_multiples_of_two_numbers(nums: List[int], limit: int, include_limit: boo
 
 
 if __name__ == '__main__':
+    #  the following is provided by Hackerrank
     t = int(input().strip())
     for a0 in range(t):
         n = int(input().strip())
+        #  the following is my own
         print(sum_multiples_of_two_numbers([3, 5], n))
