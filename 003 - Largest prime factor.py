@@ -23,21 +23,17 @@ def prime_factors(num: int) -> List[int]:
     :param num: int to factorize
     :return: List of ints which are prime factors of num
     """
-    def add_factor_to_list(add_factor, factor_list):
-        if is_prime(add_factor):
-            factor_list.append(add_factor)
-        else:
-            factor_list.extend(prime_factors(factor))
-
     factors = []
-    for factor in chain([2], range(3, int(sqrt(num)) + 1, 2), [num]):
+    for factor in chain([2], range(3, int(sqrt(num)) + 1, 2)):
         while num % factor == 0:
             num //= factor
-            add_factor_to_list(factor, factors)
+            if is_prime(factor):
+                factors.append(factor)
+            else:
+                factors.extend(prime_factors(factor))
         if num == 1:
-            break
-    if num > 1:
-        add_factor_to_list(num, factors)
+            return factors
+    factors.append(num)
     return factors
 
 
