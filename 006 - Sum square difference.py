@@ -9,20 +9,26 @@ sum is 3025 - 385 = 2640
 Find the absolute difference between the sum of the squares of the first N natural numbers and the sq of the sum
 """
 
-from operator import add
-from functools import reduce
+from typing import List
 import sys
 sys.stdin = open(__file__.replace('.py', ' - Inputs.txt'))  # Simulate inputs from stdin - remove this on Hackerrank
 
 
-def sum_square_diff(num: int) -> int:
+def sum_square_diff(num: int, sums: List[int] = [0], sum_of_squares: List[int] = [0]) -> int:
     """
     return the absolute difference between:
      i) the sum of squares of numbers 1 <= i <= num, and
     ii) the square of sum of numbers 1 <= i <= num
+
+    This version saves the sum of numbers until num and sum of squares until num to avoid repeating the loop when
+    called several times
     """
-    rng = range(1, num + 1)
-    return abs(reduce(add, [i ** 2 for i in rng]) - reduce(add, rng) ** 2)
+    # extend nums and sums if nec
+    for i in range(len(sums), num + 1):
+        sums.append(sums[-1] + i)
+        sum_of_squares.append(sum_of_squares[-1] + i ** 2)
+
+    return abs(sums[num] ** 2 - sum_of_squares[num])
 
 
 if __name__ == '__main__':
