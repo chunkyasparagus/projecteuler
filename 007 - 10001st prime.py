@@ -12,21 +12,25 @@ import sys
 sys.stdin = open(__file__.replace('.py', ' - Inputs.txt'))  # Simulate inputs from stdin - remove this on Hackerrank
 
 
-def is_odd_prime(num: int) -> bool:
-    return num > 2 and not any(num % fac == 0 for fac in range(3, num // 2 + 1, 2))
+def is_odd_prime(num: int, primes: List[int]) -> bool:
+    return (
+            num > 2 and
+            not any(num % fac == 0 for fac in primes) and
+            not any(num % fac == 0 for fac in range(primes[-1] + 2, num // 2 + 1, 2))
+    )
 
 
-def nth_prime(nth: int, primes: List[int] = [None, 2, 3]) -> int:
+def nth_prime(nth: int, primes: List[int] = [2, 3]) -> int:
     """
     return the nth prime number
     """
     #  extend the list if nec
-    for i in range(len(primes), nth + 1):
+    for _ in range(len(primes) - 1, nth):
         testnum = primes[-1] + 2
-        while not is_odd_prime(testnum):
+        while not is_odd_prime(testnum, primes):
             testnum += 2
         primes.append(testnum)
-    return primes[nth]
+    return primes[nth - 1]
 
 
 if __name__ == '__main__':
