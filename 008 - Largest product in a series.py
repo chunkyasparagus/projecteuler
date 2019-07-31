@@ -24,6 +24,7 @@ if __name__ == '__main__':
     #  the following provided by HackerRank - leaving as is
     t = int(input().strip())
     for a0 in range(t):
+        # noinspection PyRedeclaration
         n, k = input().strip().split(' ')
         n, k = [int(n), int(k)]
         num = input().strip()

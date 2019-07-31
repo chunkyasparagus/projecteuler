@@ -20,6 +20,7 @@ def is_odd_prime(num: int, primes: List[int]) -> bool:
     )
 
 
+# noinspection PyDefaultArgument
 def nth_prime(nth: int, primes: List[int] = [2, 3]) -> int:
     """
     return the nth prime number

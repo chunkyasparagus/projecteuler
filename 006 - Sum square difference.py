@@ -14,6 +14,7 @@ import sys
 sys.stdin = open(__file__.replace('.py', ' - Inputs.txt'))  # Simulate inputs from stdin - remove this on Hackerrank
 
 
+# noinspection PyDefaultArgument
 def sum_square_diff(num: int, sums: List[int] = [0], sum_of_squares: List[int] = [0]) -> int:
     """
     return the absolute difference between:
