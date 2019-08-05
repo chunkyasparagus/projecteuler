@@ -24,14 +24,14 @@ def is_odd_prime(num: int, primes: List[int]) -> bool:
 
 
 # noinspection PyDefaultArgument
-def sum_of_primes(n: int, primes: List[int] = [2, 3]) -> int:
+def sum_of_primes(n_max: int, primes: List[int] = [2, 3]) -> int:
     """
     return the sum of all primes less than or equal to n
     """
-    if n > primes[-1]:
+    if n_max > primes[-1]:
         # extend the list of saved primes out to n
-        primes.extend([num for num in range(primes[-1] + 1, n + 1) if is_odd_prime(num, primes)])
-    return sum(takewhile(lambda x: x <= n, primes))
+        primes.extend([num for num in range(primes[-1] + 2, n_max + 2, 2) if is_odd_prime(num, primes)])
+    return sum(takewhile(lambda x: x <= n_max, primes))
 
 
 if __name__ == '__main__':
