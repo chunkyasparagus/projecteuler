@@ -16,27 +16,6 @@ First line contains T that denotes the number of test cases. This is followed by
 Constraints
 1 <= T <= 10 ^ 5
 1 <= N <= 4 * 10 ^ 16
-
-
-Output Format
-
-Print the required answer for each test case.
-
-Sample Input 0
-
-2
-10
-100
-
-Sample Output 0
-
-10
-44
-
-Explanation 0
-
-For N = 10, we have {2, 8}, sum is 10.
-For N = 100, we have {2, 8, 34}, sum is 44.
 """
 
 from typing import Iterator
