@@ -14,17 +14,50 @@ What is the value of the first triangle number to have over N divisors?
 
 """
 
+from typing import Iterator, Set
+from itertools import count
+from math import sqrt
 import sys
 sys.stdin = open(__file__.replace('.py', ' - Inputs.txt'))  # Simulate inputs from stdin - remove this on Hackerrank
 
 
-def first_triangle_num_w_divisors(n: int) -> int:
+def triangular_numbers() -> Iterator[int]:
+    """
+    returns an Iterator of all triangular numbers
+    """
+    num = 0
+    for natural in count(1):
+        num += natural
+        yield num
+
+
+def factors(num: int) -> Set[int]:
+    """
+    return a set of ints which are factors of num
+    """
+    facts = set()
+    for test_fact in range(1, int(sqrt(num)) + 1):
+        if num % test_fact == 0:
+            facts.add(test_fact)
+            facts.add(num // test_fact)
+    return facts
+
+
+# noinspection PyDefaultArgument
+def first_triangle_num_w_divisors(n: int, cache={}, tri_nums=triangular_numbers()) -> int:
     """
     return the first triangle number having more than n divisors
     """
-    pass
+    while n > len(cache):
+        try_num = next(tri_nums)
+        n_of_facts = len(factors(try_num))
+        if n_of_facts > n:
+            for new_cache in range(len(cache) + 1, n_of_facts):
+                cache[new_cache] = try_num
+    return cache[n]
 
 
 if __name__ == '__main__':
     for _ in range(int(input())):
-        print(first_triangle_num_w_divisors(int(input())))
+        boom = int(input())
+        print(boom, first_triangle_num_w_divisors(boom), sep='\t')
