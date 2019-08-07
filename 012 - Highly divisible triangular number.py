@@ -51,9 +51,8 @@ def first_triangle_num_w_divisors(n: int, cache={}, tri_nums=triangular_numbers(
     while n > len(cache):
         try_num = next(tri_nums)
         n_of_facts = len(factors(try_num))
-        if n_of_facts > n:
-            for new_cache in range(len(cache) + 1, n_of_facts):
-                cache[new_cache] = try_num
+        for new_cache in range(len(cache) + 1, n_of_facts):
+            cache[new_cache] = try_num
     return cache[n]
 
 
