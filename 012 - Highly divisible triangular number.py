@@ -44,7 +44,7 @@ def factors(num: int) -> Set[int]:
 
 
 # noinspection PyDefaultArgument
-def first_triangle_num_w_divisors(n: int, cache={}, tri_nums=triangular_numbers()) -> int:
+def lowest_triangular_with_n_divisors(n: int, cache={}, tri_nums=triangular_numbers()) -> int:
     """
     return the first triangle number having more than n divisors
     """
@@ -58,5 +58,4 @@ def first_triangle_num_w_divisors(n: int, cache={}, tri_nums=triangular_numbers(
 
 if __name__ == '__main__':
     for _ in range(int(input())):
-        boom = int(input())
-        print(boom, first_triangle_num_w_divisors(boom), sep='\t')
+        print(lowest_triangular_with_n_divisors(int(input())))
